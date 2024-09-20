@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 const renderer = new THREE.WebGLRenderer()
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setClearColor(0x87ceeb);
 document.body.appendChild(renderer.domElement)
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight)
@@ -15,7 +16,7 @@ controls.update()
 
 const scene = new THREE.Scene()
 const geometry = new THREE.BoxGeometry()
-const material = new THREE.MeshLambertMaterial({ color: 0xff4500 })
+const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
 
 function setUpLights() {
   const light1 = new THREE.DirectionalLight()
