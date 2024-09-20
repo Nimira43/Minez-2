@@ -19,12 +19,25 @@ export class World extends THREE.Group {
 
   generate() {
     this.generateTerrain()
-    
     this.generateMeshes()
   }
 
   generateTerrain() {
     this.data = []
+    for (let x = 0; x < this.size.width; x++) {
+      const slice = []
+      for (let y = 0; y < this.size.height; y++) {
+        const row = []
+        for (let z = 0; z < this.size.width; z++) {
+          row.push({
+            id: 1,
+            instanceId: null
+          })
+        }
+        slice.push(row)
+      }
+      this.data.push(slice)
+    }
   }
 
   generateMeshes() {
