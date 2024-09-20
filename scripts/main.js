@@ -1,6 +1,10 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import Stats from 'three/examples/jsm/libs/stats.module.js'
 import { World } from './world'
+
+const stats = new Stats()
+document.body.append(stats.dom)
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setPixelRatio(window.devicePixelRatio)
@@ -37,6 +41,7 @@ function setUpLights() {
 function animate() {
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
+  stats.update()
 }
 
 window.addEventListener('resize', () => {

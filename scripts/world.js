@@ -4,7 +4,7 @@ const geometry = new THREE.BoxGeometry()
 const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
 
 export class World extends THREE.Group {
-  constructor(size = {width: 32, height: 16 }) {
+  constructor(size = {width: 64, height: 32 }) {
     super()
     this.size = size
   }
