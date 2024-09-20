@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setPixelRatio(window.devicePixelRatio)
@@ -9,6 +10,8 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.set(2, 2, 2)
 camera.lookAt(0, 0, 0)
 
+const controls = new OrbitControls(camera, renderer.domElement)
+
 const scene = new THREE.Scene()
 const geometry = new THREE.BoxGeometry()
 const material = new THREE.MeshBasicMaterial({ color: 0xff4500 })
@@ -17,8 +20,8 @@ scene.add(cube)
 
 function animate() {
   requestAnimationFrame(animate)
-  cube.rotation.x += 0.01
-  cube.rotation.y += 0.01
+  // cube.rotation.x += 0.01
+  // cube.rotation.y += 0.01
   renderer.render(scene, camera)
 }
 
