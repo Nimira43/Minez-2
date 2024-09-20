@@ -4,12 +4,31 @@ const geometry = new THREE.BoxGeometry()
 const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
 
 export class World extends THREE.Group {
+  /**
+   * @type ({
+   * id: number,
+   * instanceId: number
+   * }[][][])
+   */
+  data = []
+
   constructor(size = {width: 64, height: 32 }) {
     super()
     this.size = size
   }
+
   generate() {
+    this.generateTerrain()
+    this.generateMeshes()
+  }
+
+  generateTerrain() {
+    this.data = []
+  }
+
+  generateMeshes() {
     this.clear()
+
     const maxCount = this.size.width * this.size.width * this.size.height
     const mesh = new THREE.InstancedMesh(geometry, material, maxCount)
     mesh.count = 0
