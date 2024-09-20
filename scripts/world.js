@@ -19,6 +19,7 @@ export class World extends THREE.Group {
 
   generate() {
     this.generateTerrain()
+    
     this.generateMeshes()
   }
 
