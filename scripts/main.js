@@ -7,10 +7,11 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight)
-camera.position.set(2, 2, 2)
-camera.lookAt(0, 0, 0)
+camera.position.set(-32, 16, -32)
 
 const controls = new OrbitControls(camera, renderer.domElement)
+controls.target.set(16, 0, 16)
+controls.update()
 
 const scene = new THREE.Scene()
 const geometry = new THREE.BoxGeometry()
