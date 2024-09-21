@@ -12,5 +12,10 @@ export const blocks = {
     id: 2,
     name: 'dirt',
     color: 0x522612
+  },
+  stone: {
+    id: 3,
+    name: 'stone',
+    color: 0xbbbbbb
   }
 }
