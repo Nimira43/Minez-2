@@ -108,10 +108,12 @@ export class World extends THREE.Group {
    * @returns {boolean}
    */
   inBounds(x, y, z) {
-    if (x >= 0 && x < this.size.width && y >= 0 && x < this.size.height && z >= 0 && x < this.size.width) {
+    if (x >= 0 && x < this.size.width &&
+      y >= 0 && y < this.size.height &&
+      z >= 0 && z < this.size.width) {
       return true
     } else {
-
+      return false
     }
   }
 }
