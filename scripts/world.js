@@ -12,7 +12,7 @@ export class World extends THREE.Group {
    */
   data = []
 
-  constructor(size = {width: 64, height: 32 }) {
+  constructor(size = { width: 64, height: 32 }) {
     super()
     this.size = size
   }
@@ -42,11 +42,9 @@ export class World extends THREE.Group {
 
   generateMeshes() {
     this.clear()
-
     const maxCount = this.size.width * this.size.width * this.size.height
     const mesh = new THREE.InstancedMesh(geometry, material, maxCount)
     mesh.count = 0
-
     const matrix = new THREE.Matrix4()
     for (let x = 0; x < this.size.width; x++) {
       for (let y = 0; y < this.size.height; y++) {
@@ -56,7 +54,65 @@ export class World extends THREE.Group {
         }
       }
     }
-
     this.add(mesh)
   }
+
+  /**
+   * Gets block data
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @returns {{id: number, instanceId: number}}
+   */
+  getBlock(x, y, z) {
+    if (this.inBounds(x, y, z)) {
+      return this.data[x][y][y]
+    } else {
+      return null
+    }
+  }
+
+  /**
+   * Sets block id
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @param {number} id
+   */
+  setBlockId(x, y, z, id) {
+    if (this.inBounds(x, y, z)) {
+      this.data[x][y][y].id = id
+    } else {
+      return null
+    }
+  }
+  
+  /**
+   * Sets block instance id
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @param {number} instanceId
+   */
+  setBlockInstanceId(x, y, z, instanceId) {
+    if (this.inBounds(x, y, z)) {
+      this.data[x][y][y].instanceId = instanceId
+    } 
+  }
+  
+  /**
+   * Checks co-ordinates are within bounds
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @returns {boolean}
+   */
+  inBounds(x, y, z) {
+    if (x >= 0 && x < this.size.width && y >= 0 && x < this.size.height && z >= 0 && x < this.size.width) {
+      return true
+    } else {
+
+    }
+  }
 }
+
