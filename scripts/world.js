@@ -8,15 +8,15 @@ const material = new THREE.MeshLambertMaterial()
 
 export class World extends THREE.Group {
   /**
-   * @type ({
-   * id: number,
-   * instanceId: number
-   * }[][][])
-   */
+    * @type ({
+    * id: number,
+    * instanceId: number
+    * }[][][])
+  */
   data = []
 
   params = {
-    seed: 0, 
+    seed: 0,
     terrain: {
       scale: 30,
       magnitude: 0.5,
@@ -54,7 +54,7 @@ export class World extends THREE.Group {
   }
 
   generateTerrain() {
-    const rng = new RNG(this.params.seed)      
+    const rng = new RNG(this.params.seed)
     const simplex = new SimplexNoise(rng)
     for (let x = 0; x < this.size.width; x++) {
       for (let z = 0; z < this.size.height; z++) {
@@ -97,7 +97,7 @@ export class World extends THREE.Group {
           const blockType = Object.values(blocks).find(x => x.id === blockId)
           const instanceId = mesh.count
           
-          if (blockId !== 0) {
+          if (blockId !== blocks.empty.id && !this.isBlockObsured(x, y, z)) {
             matrix.setPosition(x + 0.5, y + 0.5, z + 0.5)
             mesh.setMatrixAt(instanceId, matrix)
             mesh.setColorAt(instanceId, new THREE.Color(blockType.color))
@@ -117,7 +117,7 @@ export class World extends THREE.Group {
    * @param {number} y
    * @param {number} z
    * @returns {{id: number, instanceId: number}}
-   */
+  */
   getBlock(x, y, z) {
     if (this.inBounds(x, y, z)) {
       return this.data[x][y][z]
@@ -127,38 +127,38 @@ export class World extends THREE.Group {
   }
 
   /**
-   * Sets block id
-   * @param {number} x
-   * @param {number} y
-   * @param {number} z
-   * @param {number} id
-   */
+    * Sets block id
+    * @param {number} x
+    * @param {number} y
+    * @param {number} z
+    * @param {number} id
+  */
   setBlockId(x, y, z, id) {
     if (this.inBounds(x, y, z)) {
       this.data[x][y][z].id = id
-    } 
+    }
   }
   
   /**
-   * Sets block instance id
-   * @param {number} x
-   * @param {number} y
-   * @param {number} z
-   * @param {number} instanceId
-   */
+    * Sets block instance id
+    * @param {number} x
+    * @param {number} y
+    * @param {number} z
+    * @param {number} instanceId
+  */
   setBlockInstanceId(x, y, z, instanceId) {
     if (this.inBounds(x, y, z)) {
       this.data[x][y][z].instanceId = instanceId
-    } 
+    }
   }
   
   /**
-   * Checks co-ordinates are within bounds
-   * @param {number} x
-   * @param {number} y
-   * @param {number} z
-   * @returns {boolean}
-   */
+    * Checks co-ordinates are within bounds
+    * @param {number} x
+    * @param {number} y
+    * @param {number} z
+    * @returns {boolean}
+  */
   inBounds(x, y, z) {
     if (x >= 0 && x < this.size.width &&
       y >= 0 && y < this.size.height &&
@@ -168,5 +168,31 @@ export class World extends THREE.Group {
       return false
     }
   }
-}
 
+  /**
+    * Returns true if block is completely hidden
+    * @param {number} x  
+    * @param {number} y
+    * @param {number} z
+    * @returns {boolean}
+  */
+  isBlockObsured(x, y, z) {
+    const up = this.getBlock(x, y + 1, z)?.id ?? blocks.empty.id
+    const down = this.getBlock(x, y - 1, z)?.id ?? blocks.empty.id
+    const left = this.getBlock(x + 1, y, z)?.id ?? blocks.empty.id
+    const right = this.getBlock(x - 1, y, z)?.id ?? blocks.empty.id
+    const forward = this.getBlock(x, y, z + 1)?.id ?? blocks.empty.id
+    const back = this.getBlock(x, y, z - 1)?.id ?? blocks.empty.id
+    
+    if (up === blocks.empty.id ||
+        down === blocks.empty.id ||
+        left === blocks.empty.id ||
+        right === blocks.empty.id ||
+        forward === blocks.empty.id ||
+        back === blocks.empty.id) {
+      return false
+    } else {
+      return true      
+    }  
+  }
+}
