@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { SimplexNoise } from 'three/examples/jsm/math/SimplexNoise.js'
 import { RNG } from './rng'
+import { blocks } from './blocks'
 
 const geometry = new THREE.BoxGeometry()
 const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
