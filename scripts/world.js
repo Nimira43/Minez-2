@@ -66,7 +66,7 @@ export class World extends THREE.Group {
    */
   getBlock(x, y, z) {
     if (this.inBounds(x, y, z)) {
-      return this.data[x][y][y]
+      return this.data[x][y][z]
     } else {
       return null
     }
@@ -81,7 +81,7 @@ export class World extends THREE.Group {
    */
   setBlockId(x, y, z, id) {
     if (this.inBounds(x, y, z)) {
-      this.data[x][y][y].id = id
+      this.data[x][y][z].id = id
     } else {
       return null
     }
@@ -96,7 +96,7 @@ export class World extends THREE.Group {
    */
   setBlockInstanceId(x, y, z, instanceId) {
     if (this.inBounds(x, y, z)) {
-      this.data[x][y][y].instanceId = instanceId
+      this.data[x][y][z].instanceId = instanceId
     } 
   }
   
