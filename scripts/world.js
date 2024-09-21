@@ -64,7 +64,7 @@ export class World extends THREE.Group {
             x / blocks.stone.scale.x,
             y / blocks.stone.scale.y,
             z / blocks.stone.scale.z) 
-          if (value > 0.5) {
+          if (value > blocks.stone.scarcity) {
             this.setBlockId(x, y, z, blocks.stone.id)
           }
         }
