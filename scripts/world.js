@@ -27,6 +27,7 @@ export class World extends THREE.Group {
   }
 
   generate() {
+    this.initialiseTerrain()
     this.generateTerrain()
     this.generateMeshes()
   }
@@ -57,6 +58,7 @@ export class World extends THREE.Group {
           x / this.params.terrain.scale,
           z / this.params.terrain.scale
         )
+
         const scaledNoise =
           this.params.terrain.offset +
           this.params.terrain.magnitude *
