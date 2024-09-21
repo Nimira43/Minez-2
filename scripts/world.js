@@ -82,9 +82,7 @@ export class World extends THREE.Group {
   setBlockId(x, y, z, id) {
     if (this.inBounds(x, y, z)) {
       this.data[x][y][z].id = id
-    } else {
-      return null
-    }
+    } 
   }
   
   /**
