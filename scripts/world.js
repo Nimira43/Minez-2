@@ -60,7 +60,10 @@ export class World extends THREE.Group {
     for (let x = 0; x < this.size.width; x++) {
       for (let y = 0; y < this.size.height; y++) {
         for (let z = 0; z < this.size.width; z++) {
-          const value = simplex.noise3d(x, y, z)
+          const value = simplex.noise3d(
+            x / blocks.stone.scale.x,
+            y / blocks.stone.scale.y,
+            z / blocks.stone.scale.z) 
           if (value > 0.5) {
             this.setBlockId(x, y, z, blocks.stone.id)
           }

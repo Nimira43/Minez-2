@@ -16,6 +16,8 @@ export const blocks = {
   stone: {
     id: 3,
     name: 'stone',
-    color: 0xbbbbbb
+    color: 0xbbbbbb,
+    scale: { x: 30, y: 30, z: 30 },
+    scarcity: 0.5
   }
 }
