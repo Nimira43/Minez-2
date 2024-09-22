@@ -85,9 +85,9 @@ export class Player {
    */
   toString() {
     let str = ''
-    str += `X: ${this.position.x.toFixed(3)}`
-    str += `Y: ${this.position.y.toFixed(3)}`
-    str += `X: ${this.position.z.toFixed(3)}`
+    str += `X: ${this.position.x.toFixed(3)} `
+    str += `Y: ${this.position.y.toFixed(3)} `
+    str += `Z: ${this.position.z.toFixed(3)} `
     return str
   }
 }
