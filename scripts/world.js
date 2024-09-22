@@ -64,7 +64,8 @@ export class World extends THREE.Group {
             const value = simplex.noise3d(
               x / resource.scale.x,
               y / resource.scale.y,
-              z / resource.scale.z) 
+              z / resource.scale.z
+            ) 
             if (value > resource.scarcity) {
               this.setBlockId(x, y, z, resource.id)
             }
@@ -77,7 +78,7 @@ export class World extends THREE.Group {
   generateTerrain(rng) {
     const simplex = new SimplexNoise(rng)
     for (let x = 0; x < this.size.width; x++) {
-      for (let z = 0; z < this.size.height; z++) {
+      for (let z = 0; z < this.size.width; z++) {
         const value = simplex.noise(
           x / this.params.terrain.scale,
           z / this.params.terrain.scale
