@@ -25,6 +25,7 @@ export class Player {
       this.velocity.z = this.input.z
       this.controls.moveRight(this.velocity.x * dt)
       this.controls.moveForward(this.velocity.z * dt)
+      document.getElementById('player-position').innerHTML = this.toString()
     }
   }
 
@@ -62,6 +63,31 @@ export class Player {
    * @param {KeyboardEvent} event
    */
   onKeyUp(event) {
+    switch (event.code) {
+      case 'KeyW':
+        this.input.z = 0
+        break
+      case 'KeyA':
+        this.input.x = 0
+        break
+      case 'KeyS':
+        this.input.z = 0
+        break
+      case 'KeyD':
+        this.input.x = 0
+        break
+    }
+  }
 
+  /**
+   * Returns player position
+   * @returns (string)
+   */
+  toString() {
+    let str = ''
+    str += `X: ${this.position.x.toFixed(3)}`
+    str += `Y: ${this.position.y.toFixed(3)}`
+    str += `X: ${this.position.z.toFixed(3)}`
+    return str
   }
 }
